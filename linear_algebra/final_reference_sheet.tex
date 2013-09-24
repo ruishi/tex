@@ -1,0 +1,338 @@
+\documentclass[10pt,landscape]{article}
+\usepackage{multicol}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{fouriernc}
+\usepackage{mathrsfs}
+\usepackage[compact]{titlesec}
+\usepackage[landscape]{geometry}
+
+% To make this come out properly in landscape mode, do one of the following
+% 1.
+%  pdflatex latexsheet.tex
+%
+% 2.
+%  latex latexsheet.tex
+%  dvips -P pdf  -t landscape latexsheet.dvi
+%  ps2pdf latexsheet.ps
+
+
+% If you're reading this, be prepared for confusion.  Making this was
+% a learning experience for me, and it shows.  Much of the placement
+% was hacked in; if you make it better, let me know...
+
+
+% 2008-04
+% Changed page margin code to use the geometry package. Also added code for
+% conditional page margins, depending on paper size. Thanks to Uwe Ziegenhagen
+% for the suggestions.
+
+% 2006-08
+% Made changes based on suggestions from Gene Cooperman. <gene at ccs.neu.edu>
+
+
+% To Do:
+% \listoffigures \listoftables
+% \setcounter{secnumdepth}{0}
+
+
+% This sets page margins to .5 inch if using letter paper, and to 1cm
+% if using A4 paper. (This probably isn't strictly necessary.)
+% If using another size paper, use default 1cm margins.
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+	{ \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+	{\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+	}
+
+% Turn off header and footer
+\pagestyle{empty}
+ 
+
+% Redefine section commands to use less space
+\makeatletter
+%\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+%                                {-1ex plus -.5ex minus -.2ex}%
+%                                {0.5ex plus .2ex}%x
+%                                {\normalfont\large\bfseries}}
+
+\makeatother
+
+% Define BibTeX command
+%\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+%    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+% Don't print section numbers
+\setcounter{secnumdepth}{0}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+%\setlength{\parskip}{0pt}
+\setlength{\parsep}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\topskip}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\topsep}{0pt}
+\setlength{\partopsep}{0pt}
+
+\titlespacing{\section}{0pt}{*0}{*0}
+
+
+% -----------------------------------------------------------------------
+
+\begin{document}
+\raggedright
+\footnotesize
+\begin{multicols}{3}
+
+
+% multicol parameters
+% These lengths are set only within the two main columns
+%\setlength{\columnseprule}{0.25pt}
+\setlength{\premulticols}{0pt}
+\setlength{\postmulticols}{0pt}
+\setlength{\multicolsep}{0pt}
+\setlength{\columnsep}{0pt}
+
+\begin{center}
+     \Large{\textbf{Math 322 Cheat Sheet}} \\
+\end{center}
+
+%---------------CHAPTER 3.1--------------%
+\section{CH 3.1}
+\newlength{\MyLen}
+\settowidth{\MyLen}{\texttt{TH..3.1}}
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}} %{@{}ll@{}}
+\verb!def.! & Let A be an $m\times n$ matrix. Any one of the following three operations on the rows [columns] of A is called an elementary row [column] operation:
+             \begin{enumerate}[(1)]
+             \item Interchanging any two rows [columns] of A
+             \item Multiplying any row [column] of A by a nonzero scalar
+             \item Adding any scalar multiple of a row [column] of A to another row [column]
+             \end{enumerate}
+             Elementary operations are of type 1, type 2, or type 3 depending on whether they are obtained by (1), (2), or (3).\\
+\verb!def.! & An nxn elementary matrix (of type 1, 2, or 3) is a matrix obtained by performing \textbf{one} elementary operation on $I_n$.\\
+\verb!TH 3.1! & Let A be an $m\!\times\! n$ matrix and suppose that B is obtained from A by performing an elementary row [column] operation. Then there is an 
+               $m\!\times\! m [n\!\times\! n]$ elementary matrix E such that B = EA [B = AE]. In fact, E is obtained from $I_m [I_n]$ by performing the same elementary row [column] 
+               operation as that which was performed on A to obtain B. Conversely, if E is an elementary $m\!\times\! m [n\!\times\! n]$ matrix, then EA [AE] is the matrix obtained 
+               from A by performing the same elementary row [column] operation as that which produces E from $I_m [I_n]$.\\
+\verb!TH 3.2! & Elementary matrices are invertible and the inverse of an elementary matrix is an elementary matrix of the same type.\\
+\end{tabular}
+
+%---------------CHAPTER 3.2--------------%
+\section{CH 3.2}
+\settowidth{\MyLen}{\texttt{TH..3.4}}
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}} %{@{}ll@{}}
+\verb!def.! & If A is an $m\!\times\! n$ matrix, we define the rank of A, denoted rank(A), to be the rank of the linear transformation $L_A (\bar{x}) = A\bar{x}$, 
+             $\bar{x}\in \mathbb{R}^n$.\\
+\verb!TH 3.3! & Let $T: V\rightarrow W$ be a linear transformation between finite-dimensional vector spaces, and let $\beta\; and\;\gamma$ be ordered bases for V and W, respectively. Then
+               rank(T) = rank($[T]_{\beta}^{\gamma}$).\\
+\verb!TH 3.4! & Let A be an $m\!\times\! n$ matrix. If P and Q are invertible $m\!\times\! m$ and $n\!\times\! n$ matrices, respectively, then
+               \begin{enumerate}[a)]
+               \item rank(AQ) = rank(A)
+               \item rank(PA) = rank(A)
+               \item rank(PAQ) = rank(A)
+               \end{enumerate}\\
+\verb!3.4 C! & Elementary row and column operations on a matrix are rank-preserving.\\
+\verb!TH 3.5! & The rank of any matrix equals the maximum number of its linearly independent columns; that is, the rank of a matrix is the dimension of the subspace generated by its
+               columns.\\
+\verb!TH 3.6! & Let A be an $m\!\times\! n$ matrix of rank r. Then $r\leq m$, $r\leq n$, and, by means of a finite number of elementary row and column operations, A can be transferred
+               into the matrix $D = \begin{bmatrix} I_r & O_1 \\ O_2 & O_3\end{bmatrix}$ where $O_1, O_2, O_3$ are zero matrices and $I_r$ is the $r\!\times\! r$ identity matrix.\\
+\end{tabular}
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}} %{@{}ll@{}}
+\verb!3.6 C2! & Let A be an $m\!\times\! n$ matrix. Then
+               \begin{enumerate}[a)]
+               \item rank($A^t$) = rank(A)
+               \item The rank of A equals the maximum number of its linearly independent rows; that is, the rank of a matrix is the dimension of the subspace generated by its rows
+               \item The rows and columns of any matrix generate subspaces of the same dimension, numerically equal to the rank of the matrix
+               \end{enumerate}\\
+\verb!3.6 C3! & Every invertible matrix is a product of elementary matrices.\\
+\end{tabular}
+
+%---------------CHAPTER 3.3--------------%
+\section{CH 3.3}
+\settowidth{\MyLen}{\texttt{TH..3.10}}
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}} %{@{}ll@{}}
+\verb!def.! & Given a system, (S), written as $A\bar{x} = \bar{b}$, a solution to (S) is an n-tuple $\bar{S} = \begin{bmatrix} s_1 \\ . \\ . \\ . \\ s_n \end{bmatrix} \in\mathbb{R}^n$ 
+             such that $A\bar{s}=\bar{b}$. (S) is called \textbf{consistent} if it has a solution, otherwise it is called \textbf{inconsistent}.\\
+\verb!def.! & A system $A\bar{x} = \bar{0}$ is called \textbf{homogeneous}; otherwise it is \textbf{nonhomogeneous}.\\
+\verb!TH 3.8! & Let $A\bar{x} =\bar{0}$ be a homogeneous system of m linear equations in n unknowns. Let K denote the set of all solutions to $A\bar{x} =\bar{0}$. Then $K=N(L_A)$; hence
+               K is a subspace of $\mathbb{R}^n$ of dimension  $n - rank(L_A) = n - rank(A)$.\\
+\verb!3.8 C! & If m<n, the system $A\bar{x}=\bar{0}$ has a nonzero solution.\\
+\verb!TH 3.9! & Let K be the solution set of a system of linear equations $A\bar{x}=\bar{b}$ and let $K_H$ be the soluition set of the corresponding homogeneous system $A\bar{x}=\bar{0}$.
+               Then for any solution $\bar{s}$ to $A\bar{x}=\bar{b}$, $K = \{\bar{s}\} + K_H = \{\bar{s} + \bar{k}: \bar{k}\in K_H\}$.\\
+\verb!TH 3.10! & Let $A\bar{x}=\bar{b}$ be a system of n linear equations in n unknowns. If A is invertible then the system has exactly one solution, namely $A^{-1}\bar{b}$. Conversely,
+                if the system has exactly one solution, then A is invertible.\\
+\end{tabular}
+
+%---------------CHAPTER 4.1--------------%
+\section{CH 4.1}
+\settowidth{\MyLen}{\texttt{TH..3.10}}
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}} %{@{}ll@{}}
+\verb!def.! & If $A = \begin{bmatrix} a & b \\ c & d\end{bmatrix}$ is a $2\!\times\! 2$ matrix, then the determinant of A, denoted det(A) or $\left| x \right|$, is the scalar $ad-bc$.\\
+\verb!TH 4.1! & The function $det: M_{2\!\times\! 2}\rightarrow \mathbb{R}$ is a linear function of each row of a $2\!\times\! 2$ matrix when the other row is held fixed. That is, if 
+               $\bar{u},\bar{v},\bar{w}\in\mathbb{R}^2$ and k is a scalar, then
+               \begin{equation*} 
+               det\begin{bmatrix}\bar{u} + k\bar{v}\\ \bar{w}\end{bmatrix} = 
+               det\begin{bmatrix}\bar{u} \\ \bar{w}\end{bmatrix} + k det\begin{bmatrix}\bar{v} \\ \bar{w}
+               \end{bmatrix} 
+               \end{equation*}
+               and
+               \begin{equation*}
+               det\begin{bmatrix} \bar{w} \\ \bar{u} + k\bar{v}\end{bmatrix} =
+               det\begin{bmatrix} \bar{w} \\ \bar{u}\end{bmatrix} + kdet\begin{bmatrix}\bar{w} \\ \bar{v}\end{bmatrix}
+               \end{equation*}\\
+\verb!TH 4.2! & Let $A\in M_{2\!\times\! 2}$. The determinant of A is nonzero iff A is invertible. Moreover, if A is invertible then
+               \begin{equation*}
+               A^{-1} = \frac{1}{det(A)}\begin{bmatrix}A_{22} & -A_{12} \\ -A_{21} & A_{11} \end{bmatrix}
+               \end{equation*}\\
+\end{tabular}
+%---------------CHAPTER 4.2--------------%
+\section{CH 4.2}
+\settowidth{\MyLen}{\texttt{TH..4.3}}
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}} %{@{}ll@{}}
+\verb!def.! & Given a matrix $A\in M_{n\!\times\! n}, n\geq 2$, denote by $\tilde{A}_{ij}$ the $(n-1)\!\times\! (n-1)$ matrix obtained from A by deleting row i and column j.\\
+\verb!def.! & Let $A\in M_{n\!\times\! n}$. If n=1, so that $A=[A_{11}]$, put $det(A)=A_{11}$.  For $n\geq 2$, we define det(A) recursively as $det(A) = \sum_{j=1}^n (-1)^{i+j} A_{ij} 
+             det(\tilde{A}_{ij})$.\\
+\verb!TH 4.3! & The determinant of an $n\!\times\! n$ matrix is a linear function of each row when remaining rows are held fixed. That is for $1\leq r\leq n$, we have
+               \begin{equation*}
+               det\begin{bmatrix} a_1 \\ . \\ . \\ . \\ a_{r-1} \\ u + kv \\ a_{r+1} \\ . \\ . \\ . \\ a_n \end{bmatrix} =
+               det\begin{bmatrix} a_1 \\ . \\ . \\ . \\ a_{r-1} \\ u \\ a_{r+1} \\ . \\ . \\ . \\ a_n \end{bmatrix} +
+               kdet\begin{bmatrix} a_1 \\ . \\ . \\ . \\ a_{r-1} \\ v \\ a_{r+1} \\ . \\ . \\ . \\ a_n \end{bmatrix}
+               \end{equation*}
+               whenever k is a scalar and u, v, and each $a_i$ are row vectors in $mathbb{R}^n$\\
+\verb!4.3 C! & If a matrix $A\in M_{n\!\times\! n}$ has a row consisting entirely of zeros, then det(A) = 0.\\
+\verb!lemma! & Let $B\in M_{n\!\times\! n}$, where $n\geq 2$. If row i of B equals $e_k$ for some k, $1\leq k \leq n$, then $det(B) = (-1)^{i+k} det(\tilde{B}_{ik})$.\\
+\verb!TH 4.4! & The determinant of a square matrix can be evaluated by \textbf{cofactor expansion} along any row. That is, if $A\in M_{n\!\times\! n}$, then for any integer i, 
+               $1\leq i\leq n$,
+               \begin{equation*}
+               det(A) = \sum_{i=1}^n (-1)^{i+j} A_{ij} det(\tilde{A}_{ij})
+               \end{equation*}\\
+\verb!4.4 C! & If $A\in M_{n\!\times\!n}$ has two identical rows, then det(A) = 0.\\
+\verb!TH 4.5! & If $A\in M_{n\!\times\! n}$ and B is a matrix obtained from A by interchanging any two rows of A, then det(B) = -det(A).\\
+\verb!TH 4.6! & Let $A\in M_{n\!\times\! n}$ and let B be a matrix obtained from A by adding a multiple of one row of A to another row of A. Then det(B) = det(A).\\
+\verb!4.6 C! & If a matrix $A\in M_{n\!\times\! n}$ has rank less than n, then det(A)=0.\\
+\verb!rules! & The following rules summarize the effect of an elementary row operation on the determinant of a matrix $A\in M_{n\!\times\! n}$
+              \begin{enumerate}[a)]
+              \item TH 4.6
+              \item If B is obtained by multiplying a row of A by a nonzero scalar k, then det(B) = kdet(A)
+              \item If B is obtained by adding a multiple of one row of A to another, then det(B) = det(A)
+              \end{enumerate}
+\end{tabular}
+%---------------CHAPTER 5.1--------------%
+\section{CH 5.1}
+\settowidth{\MyLen}{\texttt{TH..5.1}}
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}} %{@{}ll@{}}
+\verb!def.! & A linear transformation T on a finite-dimensional vector space V is called \textbf{diagonizable} if there is an ordered basis, $\beta$, for V such that $[T]_\beta$ is a 
+             diagonal matrix. A square matrix is called diagonizable if the transformation $L_A(\bar{x}) = A\bar{x}$ is diagonizable. If T is diagonizable and $\beta = \{\bar{v}_1, ...,
+             \bar{v}_n\}$ is an ordered basis for V such that $[T]_\beta$ is a diagonal matrix, then $T(\bar{v}_j) = D_{jj}\bar{v}_j = \lambda_j\bar{v}_j$, where $\lambda_j = D_{jj}$,
+             j=1,...,n. Conversely, if $\beta = \{\bar{v}_1,...,\bar{v}_n\}$ is an ordered basis for V such that $T(\bar{v}_j) = \lambda_j\bar{v}_j$ for some scalars $\lambda_1 ,...,
+             \lambda_n$, then 
+             \begin{equation*}
+               \begin{bmatrix} \lambda_1 & 0 & . & . & . & 0 \\ 0 & \lambda_2 & . &. & . & 0 \\ . & . & . & . & . & . \\ 0 & 0 & . & . & . & \lambda_n \end{bmatrix}
+             \end{equation*}\\
+\verb!def.! & Let T be a linear transformation on a vector space V. A nonzero vector $v\in V$ is called an \textbf{eigenvector} of T if there is a scalar $\lambda$ such that $T(\bar{v}) =
+             \lambda\bar{v}$. The scalar $\lambda$ is called the \textbf{eigenvalue} corresponding to $\bar{v}$. Let $A\in M_{n\!\times\! n}$. A nonzero vector $\bar{v}\in\mathbb{R}^n$ is
+             called an eigenvector of A if $\bar{v}$ is an eigenvector of the linear transformation $L_A(\bar{x}) = A\bar{x}, x\in\mathbb{R}^n$; that is, if $Av = \lambda v$ for some 
+             scalar $\lambda$. The scalar $\lambda$ is called the eigenvalue of A corresponding to $\bar{v}$. \\
+\verb!def.! & Eigenvectors can be found by solving for v in $(A - \lambda I)v = 0$.\\
+\verb!TH 5.1! & A linear transformation T on a finite-dimensinoal vector space V is diagonizable iff there is an ordered basis $\beta$ for V consisting of eigenvectors of T. Furthermore,
+               if T is diagonizable, $\beta = \{\bar{v}_1 ,...,\bar{v}_n\}$ is an ordered basis of eigenvectors of T and $D=[T]_\beta$, then D is a diagonal matrix and $D_{jj}$ is the
+               eigenvalue corresponding to $\bar{v}_j$ for $1\leq j \leq n$.\\
+\verb!TH 5.2! & Let $A\in M_{n\!\times\! n}$. Then a scalar $\lambda$ is an eigenvalue of A iff $det(A - \lambda I_n) = 0$ (The eigenvalues of a matrix are the zeros of its characteristic
+               polynomial).\\
+\verb!def.! & Let $A\in M_{n\!\times\! n}$ The polynomial $f(t) = det(A - tI_n)$ is called the \textbf{characteristic polynomial} of A.\\
+\verb!def.! & Let T be a linear transformation on an n-dimensional vector space V with ordered basis $\beta$. The characteristic polynomial of T is defined to be the characteristic
+             polynomial of $A = [T]_\beta$. That is $f(t) = det(A - tI_n)$.\\
+\verb!TH 5.3! & Let $A\in M_{n\!\times\! n}$
+               \begin{enumerate}[a)]
+               \item The characteristic polynomial of A is a polynomial of degree n with leading coefficient $(-1)^n$.
+               \item n has at most n distinct eigenvalues.
+               \end{enumerate}\\
+\verb!TH 5.4! & Let T be a linear transformation on a vector space V, and let $\lambda$ be an eigenvalue of T. A vector $\bar{v}\in V$ is an eigenvector of T corresponding to $\lambda$
+               iff $\bar{v}\neq\bar{0}$ and $\bar{v}\in N(T - \lambda I)$.\\
+\end{tabular}
+%---------------CHAPTER 5.2--------------%
+\section{CH 5.2}
+\settowidth{\MyLen}{\texttt{TH..5.5}}
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}} %{@{}ll@{}}
+\verb!TH 5.5! & Let T be a linear transformation on a vector space V and let $\lambda_1 , \lambda_2 ,..., \lambda_k$ be distinct eigenvalues of T. If $\bar{v}_1 ,..., \bar{v}_k$ are
+               eigenvectors of T such that $\lambda_i$ corresponds to $\bar{v}_i (1\leq i\leq k)$ then $\{\bar{v}_1 ,...,\bar{v}_k \}$ is a linearly independent set.\\
+\verb!5.5 C! & Let T be a linear transformation on an n-dimensional vector space V. If T has n distinct eigenvalues, then T is diagonizable. Converse is false (ex: identity transformation
+              is diagonizable even though it has only one eigenvalue).\\
+\verb!def.! & A polynomial f(t) \textbf{splits over} $\mathbb{R}$ if it can be written as $f(t) = c(t - a)(t - a_2)...(t - a_n)$.\\
+\verb!TH 5.6! & The characteristic polynomial of any diagonizable linear transformation splits.\\
+\verb!def.! & Let $\lambda$ be an eigenvalue of a linear transformation or matrix with characteristic polynomial f(t). The \textbf{(algebraic) multiplicity} of $\lambda$ is the largest
+             positive integer k for which $(t - \lambda)^k$ is a factor of f(t).\\
+\verb!def.! & Let T be a linear transformation on a vector space V and let $\lambda$ be an eigenvalue of T. Define $E_\lambda = \{\bar{x}\in V:T(\bar{x}) = \lambda\bar{x}\} = N(T - \lambda
+             I_V)$. The set $E_\lambda$ is called the \textbf{eigenspace} of T corresponding to $\lambda$.;; That is $E_\lambda$ is a subspace of V consisting of the zero vector and the
+             eigenvectors of T corresponding to the eigenvalue $\lambda$.\\
+\verb!TH 5.7! & Let T be a linear transformation on a finite-dimensional vector space V and let $\lambda$ be an eigenvalue of T having multiplicity m. Then $1\leq dim(E_\lambda)\leq m$.\\
+\verb!def.! & Let T be a linear transformation on an n-dimensional vector space V. Then T is diagonizable iff both of the following conditions hold.
+             \begin{enumerate}
+               \item The characteristic polynomial of T splits
+               \item For each eigenvalue $\lambda$ of T, the multiplicity of $\lambda$ equals $n - rank(T - \lambda I)$.
+             \end{enumerate}\\
+\verb!TH 5.9! & Let T be a linear transformation on a finite-dimensional vector space V such that the characteristic polynomial of T splits. Let $\lambda_1 , \lambda_2 ,...,\lambda_k$ be
+               the distinct eigenvalues of T. Then
+               \begin{enumerate}[a)]
+                 \item T is diagonizable iff the multiplicity of $\lambda_i$ is equal to $dim(E_{\lambda i})$ for all i.
+                 \item If T is diagonizable and $\beta_i$ is an ordered basis for $E_{\lambda i}$, for each i, then $\beta = \beta_1\cup\beta_2\cup ...\cup\beta_k$ is an ordered basis for
+                       for V consisting of eigenvectors of T.
+               \end{enumerate}
+\end{tabular}
+%---------------CHAPTER 6.1--------------%
+\section{CH 6.1}
+\settowidth{\MyLen}{\texttt{TH..6.1}}
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}} %{@{}ll@{}}
+\verb!def.! & Let V be a vector space. An \textbf{inner product} on V is a function that assigns, to every ordered pair of vectors, $\bar{x},\bar{y}\in V$, a scalar, denoted $<\bar{x},
+             \bar{y}>$ such that for all $\bar{x},\bar{y},\bar{z}\in V$ and $c\in\mathbb{R}$ the following hold:
+             \begin{enumerate}[a)]
+               \item $<\bar x + \bar z,\bar y> = <\bar x,\bar y> + <\bar z, \bar y>$
+               \item $<c\bar x,\bar y> = c<\bar x,\bar y>$
+               \item $<\bar x,\bar y> = <\bar y,\bar x>$
+               \item $<\bar x, \bar x> > 0$ if $\bar x \neq \bar 0$
+             \end{enumerate}\\
+\verb!TH 6.1! & Let V be a vector space with an inner product (AKA \textbf{inner product space}). Then
+               \begin{enumerate}[a)]
+                 \item $<\bar x,\bar y + \bar z> = <\bar x,\bar y> + <\bar x,\bar z>$
+                 \item $<\bar x,c\bar y> = c<\bar x,\bar y>$
+                 \item $<\bar x,\bar 0> = <\bar 0,\bar x> = \bar 0$
+                 \item $<\bar x,\bar x> = \bar 0\Longleftrightarrow\bar x = \bar 0$
+                 \item if $<\bar x,\bar y> = <\bar x,\bar z>$ for all $\bar x\in V$, then $\bar y = \bar z$
+              \end{enumerate}\\
+\end{tabular}
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}} %{@{}ll@{}}
+\verb!def.! & Let V be an inner product space. For $\bar x\in V$, define the \textbf{norm} or \textbf{length} of $\bar x$ by $\| x\| = \sqrt{<\bar x,\bar x>}$.\\
+\verb!TH 6.2! & Let V be an inner product space. Then for all $\bar x,\bar y\in V$ and $c\in\mathbb{R}$, the following statements hold
+               \begin{enumerate}[a)]
+                 \item $\| c\bar x\| = |c|\cdot \|\bar x\|$
+                 \item $\| \bar x\| = 0$ iff $\bar x = \bar 0$. In any case, $\| \bar x\|\geq\bar 0$
+                 \item $|<\bar x,\bar y>|\leq\|\bar x\|\cdot\|\bar y\|$ (Cauchy-Schwarz Inequality)
+                 \item $\|\bar x + \bar y\|\leq\|\bar x\| + \|\bar y\|$ (Triangle Inequality)
+               \end{enumerate}\\
+\verb!def.! & Let V be an inner product space. Vectors $\bar x,\bar y\in V$ are called \textbf{orthogonal} if $<\bar x,\bar y> = 0$. A subset S of V is \textbf{orthogonal} if any 2
+             distinct vectors in S are orthogonal. A vector $\bar x\in V$ is a \textbf{unit vector} if $\|\bar x\| = 1$. Finally, a subset S of V is \textbf{orthonormal} if S is
+             orthogonal and consists entirely of unit vectors.
+\end{tabular}
+
+\rule{0.3\linewidth}{0.25pt}
+\scriptsize
+
+RD Galang
+
+\end{multicols}
+\end{document}

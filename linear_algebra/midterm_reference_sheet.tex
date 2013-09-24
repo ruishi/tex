@@ -1,0 +1,352 @@
+\documentclass[10pt,landscape]{article}
+\usepackage{multicol}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{fouriernc}
+\usepackage{mathrsfs}
+\usepackage[compact]{titlesec}
+\usepackage[landscape]{geometry}
+
+% To make this come out properly in landscape mode, do one of the following
+% 1.
+%  pdflatex latexsheet.tex
+%
+% 2.
+%  latex latexsheet.tex
+%  dvips -P pdf  -t landscape latexsheet.dvi
+%  ps2pdf latexsheet.ps
+
+
+% If you're reading this, be prepared for confusion.  Making this was
+% a learning experience for me, and it shows.  Much of the placement
+% was hacked in; if you make it better, let me know...
+
+
+% 2008-04
+% Changed page margin code to use the geometry package. Also added code for
+% conditional page margins, depending on paper size. Thanks to Uwe Ziegenhagen
+% for the suggestions.
+
+% 2006-08
+% Made changes based on suggestions from Gene Cooperman. <gene at ccs.neu.edu>
+
+
+% To Do:
+% \listoffigures \listoftables
+% \setcounter{secnumdepth}{0}
+
+
+% This sets page margins to .5 inch if using letter paper, and to 1cm
+% if using A4 paper. (This probably isn't strictly necessary.)
+% If using another size paper, use default 1cm margins.
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+	{ \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+	{\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+	}
+
+% Turn off header and footer
+\pagestyle{empty}
+ 
+
+% Redefine section commands to use less space
+\makeatletter
+%\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+%                                {-1ex plus -.5ex minus -.2ex}%
+%                                {0.5ex plus .2ex}%x
+%                                {\normalfont\large\bfseries}}
+
+\makeatother
+
+% Define BibTeX command
+%\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+%    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+% Don't print section numbers
+\setcounter{secnumdepth}{0}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+%\setlength{\parskip}{0pt}
+\setlength{\parsep}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\topskip}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\topsep}{0pt}
+\setlength{\partopsep}{0pt}
+
+\titlespacing{\section}{0pt}{*0}{*0}
+
+
+% -----------------------------------------------------------------------
+
+\begin{document}
+\raggedright
+\footnotesize
+\begin{multicols}{3}
+
+
+% multicol parameters
+% These lengths are set only within the two main columns
+%\setlength{\columnseprule}{0.25pt}
+\setlength{\premulticols}{0pt}
+\setlength{\postmulticols}{0pt}
+\setlength{\multicolsep}{0pt}
+\setlength{\columnsep}{0pt}
+
+\begin{center}
+     \Large{\textbf{Math 322 Cheat Sheet}} \\
+\end{center}
+
+%-----------------CHAPTER 1.2--------------------
+\section{CH 1.2 (Vector Spaces)}
+\newlength{\MyLen}
+\settowidth{\MyLen}{\texttt{TH..1.1}}
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}} %{@{}ll@{}}
+\verb!def.!   & A \textbf{vector space} (or linear space) V over the field of real scalars $\mathbb{R}$ consists of a set on which two operations (called \textit{addition} and \textit {scalar multiplication}, respectively) 
+		     are defined so that for each pair of elements, $\bar x , \bar y \! \in V$ there is a unique element $\bar x + \bar y \! \in V$ and for each scalar $a\!\in\!\mathbb{R}$ and each element
+		     $x\!\in\! V$, there is a unique element $a\bar x \! \in\! V$, such that the conditions below hold.\\
+\verb!VS 1!  & $\bar x + \bar y = \bar y + \bar x$\\
+\verb!VS 2!  & $(\bar x + \bar y) + \bar z = \bar x + (\bar y + \bar z)$ \\
+\verb!VS 3!  & $\exists\; an\; element\; \bar 0\! \in \!V\: such\; that\; \bar x + \bar 0 = \bar x \; \forall x\! \in\! V$\\
+\verb!VS 4!  & $\forall \bar x\! \in\! V \; \exists \bar y \!\in\! V such\; that\; \bar x + \bar y = \bar 0$ \\
+\verb!VS 5!  & $1\bar x = \bar x \; \forall x\! \in\! V$\\
+\verb!VS 6!  & $(ab)\bar x = a(b\bar x)$\\
+\verb!VS 7!  & $a(\bar x + \bar y) = a\bar x + a\bar y$\\
+\verb!VS 8!  & $(a + b)\bar x = a\bar x + b\bar x$\\
+\verb!TH 1.1! & If $\bar x , \bar y , \bar z$ are vectors in V such that $\bar x + \bar z = \bar y + \bar z$, then $\bar x = \bar y$.\\
+\verb!1.1 C1! & The vector $\bar 0$ described in VS 3 is unique.\\
+\verb!1.1 C2! & The vector $\bar y$ described in VS 4 is unique.\\
+\verb!def.! & The vector $\bar 0$ in VS 3 is called the \textbf{zero vector} of V, and the vector $\bar y$ in VS 4 is called the \textbf{additive inverse} of $\bar x$ and is denoted $-\bar x$.\\
+\verb!TH1.2! & \begin{enumerate}[a)]
+			 \item $0\bar x = \bar 0 \; \forall \bar x \!\in\! V$
+		         \item $(-a)\bar x = -(a\bar x) = a(-\bar x) \; \forall a\!\in\!\mathbb{R} \;and\; \forall\bar x\!\in\! V$
+		   	 \item $a\bar 0 = \bar 0 \; \forall a\!\in\!\mathbb{R}$\end{enumerate}
+\end{tabular}
+
+
+
+%-----------------CHAPTER 1.3---------------------
+\section{CH 1.3 (Subspaces)}
+\settowidth{\MyLen}{\texttt{TH..1.4}}
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}} %{@{}ll@{}}
+\verb!def! & A subset W of a vector space is called a \textbf{subspace} of V if W is a vector space with the operations of addition and scalar multiplication defined on V.\\
+\end{tabular}
+Note: V and {$\bar 0$} are subspaces of V. The latter is called the \textbf{zero subspace} of V.\\
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}} %{@{}ll@{}}
+\verb!TH 1.3! & Let V be a vector space and W a subset of V. Then W is a subspace of V iff the following three conditions hold for the operations defined on V:
+			\begin{enumerate}[a)]
+			 \item $\bar 0\!\in\! W$
+			 \item $\bar x + \bar y \in\! W\; whenever\; \bar x \in W \; and \; \bar y \in W$
+			 \item $c\bar x \in\!W\; whenever\; c\in\mathbb{R} \; and\; x\in W$
+			\end{enumerate}\\
+\verb!def.! & A \textbf{transpose} $A^t$ of an mxn matrix A is the nxm matrix obtained from A by interchanging the rows with the columns. That is, $(A^t)_{ij} = A_{ji}$.\\
+\verb!def.! & A \textbf{symmetric} matrix is a matrix A such that $A^t = A$. Clearly, a symmetric matrix must be square.\\
+\verb!def.! & The \textbf{trace} of an nxn matrix M, denoted tr(M) is the sum of the diagonal entries of M:
+		   $tr(M) = M_{11} + M_{22} + ... + M_{nn}$\\
+\verb!TH 1.4! & The \textbf{intersection} of any family of subspaces of a vector space V is a subspace of V. Observe that generally, the union of a family of subspaces of V is not a subspace of V.
+\end{tabular}
+
+
+%------------------------------CHAPTER 1.4-------------------------------------
+
+\section{CH 1.4 (Lin. Combos/Sys. of Eqs.)}
+\settowidth{\MyLen}{\texttt{TH..1.5}}
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}} %{@{}ll@{}}
+\verb!def.! & Let V be a vector space and S a nonempty subset of V. A vector $\bar v \in V$ is called a \textbf{linear combination} of vectors of S if there exist a finite number of vectors $\bar u_1 , ..., \bar u_n$ in S and scalars $a_1 ,..., a_n$ such that $\bar v = a_1 \bar u_1 + ... + a_n \bar u_n$.
+		   In this case we also say that $\bar v$ is a linear combination of $\bar u_1 ,..., \bar u_n$ and call $a_1 ,..., a_n$ the coefficients of the linear combination.\\
+\verb!def.! & Let S be a nonempty subset of a vector space V. The \textbf{span} of S, denoted span(S), is the set consisting of all linear combinations of vectors in S. We define span($\emptyset$) = \{$\bar 0$\}.\\
+\verb!TH 1.5! & The span of any set $S\subset V$ is a subspace of V. Moreover, any subspace of V which contains S must also contain span(S).
+\end{tabular}
+
+%-----------------------CHAPTER 1.5----------------
+\section{CH 1.5 (Linear Dep. and Ind.)}
+\settowidth{\MyLen}{\texttt{TH..1.7}}
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}} %{@{}ll@{}}
+\verb!def.! & A nonempty subset S of a vector space V is called \textbf{linearly dependent} if there are distinct vectors $\bar u_1 ,..., \bar u_n \in S$ and scalars $a_1 ,..., a_n$, not all zero, such that $a_1\bar u_1 +...+ a_n\bar u_n = \bar 0$.\\
+\verb!def.! & A subset S of a vector space V which is not linearly dependent is called \textbf{linearly independent}.\\
+\verb!TH 1.6! & Let V be a vector space and let $S_1 \subset S_2 \subset V$. If $S_1$ is linearly dependent, then $S_2$ is linearly dependent.\\
+\verb!1.6 C! & Let V be a vector space and let $S_1 \subset S_2 \subset V$. If $S_2$ is linearly independent then $S_1$ is linearly independent.\\
+\verb!TH 1.7! & Let S be a linearly independent subset of vector space V and let $\bar v$ be a vector in U which isn't in S. Then SU\{$\bar v$\} is linearly dependent iff $\bar v \in span(S)$.\\
+\end{tabular}
+
+%--------------------------CHAPTER 1.6-----------------------------
+\section{CH 1.6 (Bases and Dimension)}
+\settowidth{\MyLen}{\texttt{1.10..C1}}
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}} %{@{}ll@{}}
+\verb!def.! & A \textbf{basis} $\beta$ for a vector space V is a linear independent subset of V that spans V. If $\beta$ is a basis for V, we also say that \textit{the vectors} of $\beta$ form a basis for V.\\
+\verb!TH 1.8! & Let S be a linearly independent set of a vector space V, and let x be an element of V that is not in S. Then $S\cup \{x\}$ is linearly dependent iff $x\in\! span(S)$.\\
+\verb!TH 1.9! & If a vector space V is generated by a finite set S, then some subset of S is a basis for V. Hence V has a finite basis.\\
+\verb!TH 1.10! & Let V be a vector space that is generated by a set G containing exactly n vectors, and let L be a linearly independent subset of V containing exactly m vectors. Then m $\leq$n and there exists a subset H of G containing exactly n-m vectors such that $L\cup H$ generates V.\\
+\verb!1.10 C1! & Let V be a vector space having a finite basis. Then every basis for V contains the same number of vectors.\\
+\verb!1.10 C2! & Let V be a vector space with dimensions n.
+			\begin{enumerate}[a)]
+			\item Any finite generating set for V contains at least n vectors, and a generating set for V that contains exactly n vectors is a basis for V.
+			\item Any linearly independent subset of V that contains exactly n vectors is a basis for V.
+			\item Every linearly independent subset of V can be extended to a basis for V.
+			\end{enumerate}\\
+\end{tabular}
+\settowidth{\MyLen}{\texttt{1.10..C1}}
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}} %{@{}ll@{}}
+\verb!def.! & A vector space V is called \textbf{finite-dimensional} if it has a basis consisting of finitely many vectors. This (unique) number is called the \textbf{dimension} of V and is denoted dim(V).\\
+\verb!TH 1.11! & Let W be a subspace of a finite-dimensional vector space V. Then W is finite-dimensional and dim(W)$\leq$dim(V). Moreover, if dim(W) = dim(V), then W=V.\\
+\verb!1.11 C! & If W is a subspace of a finite-dimensional vector space V, then W has a finite basis, and any basis for W is a subset of a basis for V.
+\end{tabular}
+
+%---------------------------CHAPTER 2.1----------------------------
+\section{CH 2.1 (Lin. Trans., Null Spaces, Ranges)}
+\settowidth{\MyLen}{\texttt{TH..2.4}}
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}} %{@{}ll@{}}
+\verb!def.! & Let V and W be vector spaces. A function $T:V\rightarrow W$ is called a \textbf{linear transformation} from  V into W for all $x,y\in\! V$ and $c\in\!\mathbb{R}$ we have
+		   \begin{enumerate}[a)]
+		    \item T(x + y) = T(x) + T(y)
+		    \item T(cx) = cT(x)
+		   \end{enumerate}
+		   The reader should verify the following facts about a function $T:V\rightarrow W$:
+		   \begin{enumerate}
+		   \item If T is linear, then T(0) = 0.
+		   \item T is linear iff T(ax + y) = aT(x) + T(y) for all $x, y\in\! V$ and $a\in\!\mathbb{R}$.
+		   \item T is linear iff for $x_1 ,..., x_n\!\in\! V$ and $a_1 ,..., a_n \!\in\!\mathbb{R}$ we have $T\left(\sum_{i=1}^n a_i x_i\right) = \sum_{i=1}^n a_i T(x_i)$.
+		   \end{enumerate}\\
+\verb!def.! & Let V and W be vector spaces, and let $T:V\rightarrow W$ be linear. We define the \textbf{null space} (or kernel) N(T) of T to be the set of all vectors x in V such that T(x) = 0; that is, $N(T) = \{x\!\in\! V: T(x) = 0\}$. 
+		   We define the \textbf{range} (or image) R(T) of T to be the subset of W consisting of all images (under T) of elements of V; that is $R(T) = \{T(x):x\!\in\! V\}$.\\
+\verb!TH 2.1! & Let V and W be vector spaces and $T:V\rightarrow W$ be linear. Then N(T) and R(T) are subspaces of V and W, respectively.\\
+\verb!TH 2.2! & Let V and W be vector spaces, and let $T:V\rightarrow W$ be linear. If V has a basis $\beta = \{x_1 ,..., x_n\}$, then $R(T) = span\{T(x_1 ),..., T(x_n )\}$.\\
+\verb!def.! & Let V and W be vector spaces, and let $T:V\rightarrow W$ be linear. If N(T) and R(T) are finite-dimensional, then we define the \textbf{nullity} of T, denoted nullity(T), and the \textbf{rank} of T, denoted rank(T), to be the dimensions of N(T) and R(T), respectively.\\
+\verb!TH 2.3! & Let V and W be vector spaces, and let $T:V\rightarrow W$ be linear. If V is finite-dimensional, then nullity(T) + rank(T) = dim(V).\\
+\verb!TH 2.4! & Let V and W be vector spaces, and let $T:V\rightarrow W$ be linear. Then T is one-to-one iff N(T) = \{0\}.\\
+\verb!TH 2.5! & Let V and W be vector spaces of equal (finite) dimension, and let $T:V\rightarrow W$ be linear. Then, T is one-to-one iff T is onto.\\
+\end{tabular}
+\settowidth{\MyLen}{\texttt{TH..2.4}}
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}} %{@{}ll@{}}
+\verb!TH 2.6! & Let V and W be vector spaces over $\mathbb{R}$ and suppose that V is finite-dimensional with a basis $\{x_1 ,..., x_n\}$. For any vectors $y_1 ,..., y_n$ in W there exists exactly one linear transformation $T:V\rightarrow W$ such that $T(x_i) = y_i$ for i = 1,...,n.\\
+\verb!2.6 C! & Let V and W be vector spaces, and suppose that V has a finite basis $\{x_1 ,..., x_n\}$. If $U,T:V\rightarrow W$ are linear and $U(x_i) = T(x_i)$ for i=1,...,n, then U=T.
+\end{tabular}
+
+%---------------------------CHAPTER 2.2----------------------------
+\section{CH 2.2 (Matrix Representation)}
+\settowidth{\MyLen}{\texttt{TH..2.7}}
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}} %{@{}ll@{}}
+\verb!def.! & Let V be a finite-dimensional vector space. An \textbf{ordered basis} for V is a basis for V endowed with a specified order; that is, an ordered basis for V is a finite sequence of linearly independent elements of V that generate V.\\
+\verb!def.! & Let $\beta = \{\bar u_1,...,\bar u_n\}$ be an ordered basis for a finite-dimensional vector space V. For $\bar x\!\in\! V$, let $a_1,...,a_n$ be the unique scalars such that $\bar x = \sum_{i=1}^n a_a\bar u_i$.
+		   We define the \textbf{coordinate vector} of $\bar x$ relative to $\beta$, denoted $[\bar x]_\beta$ by $[\bar x]_\beta = \begin{bmatrix} a_1 \\ . \\ . \\ . \\ a_n\end{bmatrix}$\\
+\verb!def.! & We call the mxn matrix A defined by $A_{ij} = a_{ij}$ the matrix that represents T  in the ordered bases $\beta$ and $\gamma$ and will write $A = [T]_\beta^\gamma$. If V=W and $\beta = \gamma$, we write $A=[T]_\beta$.\\
+\verb!def.! & Let $T,U:V\rightarrow W$ be arbitrary functions, where V and W are vector spaces, and let $a\!\in\!\mathbb{R}$. We define $T + U:V\rightarrow W$ by (T + U)(x) = T(x) + U(x) for all $x\!\in\! V$, and $aT:V\rightarrow W$ by (aT)(x) = aT(x) for all $x\!\in\! V$.\\
+\verb!TH 2.7! & Let V and W be vector spaces, and let $T,U:V\rightarrow W$ be linear. Then for all $a\!\in\!\mathbb{R}$
+			\begin{enumerate}[a)]
+			\item aT + U is linear.
+			\item Using the operations of addition and scalar multiplication as defined above, the collection of all linear transformations from V into W is a vector space over $\mathbb{R}$. This vector space is denoted $\mathscr{L} (V,W)$.
+			\end{enumerate}\\
+\verb!TH 2.8! & Let V and W be finite-dimensional vector spaces with ordered bases $\beta$ and $\gamma$, respectively, and let $T,U:V\rightarrow W$ be linear transformations. Then
+			\begin{enumerate}[a)]
+			\item $[T + U]_\beta^\gamma = [T]_\beta^\gamma + [U]_\beta^\gamma$.
+			\item $[aT]_\beta^\gamma = a[T]_\beta^\gamma \; for \; all \; a\!\in\!\mathbb{R}$.
+			\end{enumerate}
+\end{tabular}
+
+
+%-----------------------CHAPTER 2.3---------------------------------
+\section{CH 2.3 (Compositions and Multiplication)}
+\settowidth{\MyLen}{\texttt{TH..2.9}}
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}} %{@{}ll@{}}
+\verb!def.! & Let V, W, and Z be vector spaces and let $T:V\rightarrow W$ and $U:W\rightarrow Z$ be linear. We define $UT:V\rightarrow Z$ by (UT)(x) = U(T(x)) for all $x\!\in\!V$.\\
+\verb!TH 2.9! & Let V, W, and Z be vector spaces and $T:V\rightarrow W$ and $U:W\rightarrow Z$ be linear. Then $UT:V\rightarrow Z$ is linear.\\
+\end{tabular}
+\settowidth{\MyLen}{\texttt{TH..2.10}}
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}} %{@{}ll@{}}
+\verb!TH 2.10! & Let V be a vector space. Let $T, U_1, U_2 \in \mathscr{L}(V)$. Then
+			 \begin{enumerate}[a)]
+			 \item $T(U_1 + U_2) = TU_1 + TU_2$ and $(U_1 + U_2)T = U_1T + U_2T$.
+			 \item $T(U_1 U_2) = (TU_1)U_2$.
+			 \item TI = IT = T.
+			 \item $a(U_1 U_2) = (aU_1)(U_2) = U_1(aU_2)$ for all $a\!\in\!\mathbb{R}$.
+			 \end{enumerate}\\
+\verb!def.! & Let A be an mxn matrix and B be an nxp matrix. We define the \textbf{product} of A and B, denoted AB, to be the mxp matrix such that $(AB)_{ij} = \sum_{k=1}^n A_{ik}B_{kj}\; for\; 1\leq i \leq m,\; 1\leq j \leq p$.\\
+\verb!TH 2.11! & Let V, W, and Z be finite-dimensional vector spaces with ordered bases $\alpha , \beta ,\; and\;\gamma$, respectively. Let $T:V\rightarrow W$ and $U:W\rightarrow Z$ be linear transformations. Then $[UT]_\alpha^\gamma = [U]_\beta^\gamma [T]_\alpha^\beta$.\\
+\verb!2.11 C! & Let V be a finite-dimensional vector space with an ordered basis $\beta$. Let $T, U\!\in\!\mathscr{L}(V)$. Then $[UT]_\beta = [U]_\beta[T]_\beta$.\\
+\verb!TH 2.12! & Let A be an mxn matrix, and let B and C be nxp matrices.  (a) A(B + C) = AB + AC. (b) For any scalar a,  a(AB) = (aA)B = A(aB). (c) $I_mA = AI_n = A$. (d) If V is an n-dimensional vector space with an ordered basis $\beta$, then $[I_v]_\beta = I_n$.\\
+\verb!2.12 C! & Let A be an m x n matrix, $B_1,...,B_k$ be nxp matrices, and $a_1,...,a_k\!\in\!\mathbb{R}$. Then $a\left(\sum_{i=1}^k a_iB_i\right) = \sum_{i=1}^k a_iAB_i$.\\
+\verb!TH 2.13! & Let A be an mxn matrix and B be an nxp matrix. Then
+			\begin{enumerate}[a)]
+			\item $(AB)^{(j)} = AB^{(j)}$.
+			\item $B^{(j)} = Be_j$, where $e_j$ is the jth column of $I_p$.
+			\end{enumerate}\\
+\verb!TH 2.14! & Let V and W be finite-dimensional vector spaces having ordered bases $\beta$ and $\gamma$, respectively, and let $T:V\rightarrow W$ be linear. Then for each $x\!\in\! V$ we have $[T(x)]_\gamma = [T]_\beta^\gamma [x]_\beta$.\\
+\verb!TH 2.16! & Let A, B, and C be matrices such that A(BC) is defined. Then (AB)C is defined and A(BC) = (AB)C; that is, matrix multiplication is associative.
+\end{tabular}
+%-------------------------CHAPTER 2.4----------------------------
+\section{CH 2.4 (Invertibility/Isomorphisms)}
+\settowidth{\MyLen}{\texttt{TH..2.15}}
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}} %{@{}ll@{}}
+\verb!def.! & Let V and W be vector spaces, and let $T:V\rightarrow W$ be linear. T has an \textbf{inverse} $U:W\rightarrow V$ if $TU=I_w$ and $UT=I_v$. Inverses are unique and we write $U=T^{-1}$ We say T is \textbf{invertible} if T has an inverse.
+		   The following facts hold for invertible functions T and U.
+		   \begin{enumerate}
+		   \item $(TU)^{-1} = U^{-1}T^{-1}$.
+		   \item $(T^{-1})^{-1} = T$
+		   \end{enumerate}
+		   Also, a function is invertible iff it is one-to-one and onto. (rank(T) = dim(V))\\
+\verb!TH 2.17! & Let V and W be vector spaces, and let $T:V\rightarrow W$ be linear and invertible. Then $T^{-1}:W\rightarrow V$ is linear.\\
+\verb!def.! & Let A be an nxn matrix. Then A is \textbf{invertible} if there exists an nxn matrix B such that AB=BA=I.\\
+\end{tabular}
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}} %{@{}ll@{}}
+\verb!lemma! & Let V and W be finite-dimensional vector spaces and let $T:V\rightarrow W$ be linear. If T is invertible, then dim(V) = dim(W).\\
+\verb!TH 2.18! & Let V and W be finite-dimensional vector spaces with ordered bases $\beta$ and $\gamma$, respectively. Let $T:V\rightarrow W$ be linear. Then T is invertible iff $[T]_\beta^\gamma$ is invertible. Furthermore, $[T^{-1}]_\gamma^\beta = ([T]_\beta^\gamma)^{-1}$.\\
+\verb!2.18 C1! & Let V be a finite-dimensional vector space with an ordered basis $\beta$, and let $T:V\rightarrow V$ be linear. Then T is invertible iff $[T]_\beta$ is invertible. Furthermore $[T^{-1}]_\beta = [T]_\beta^{-1}$.\\
+\end{tabular}
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}} %{@{}ll@{}}
+\verb!def.! & Let V and W be vector spaces. We say that V is \textbf{isomorphic} to W if there exists a linear transformation $T:V\rightarrow W$ that is invertible. Such a linear transformation is called an isomorphism from V onto W.\\
+\verb!TH 2.19! & Let V and W be finite-dimensional vector spaces over $\mathbb{R}$. Then V is isomorphic to W iff dim(V) = dim(W).\\
+\verb!2.19 C! & If V is a vector space over $\mathbb{R}$ of dimension n, then V is isomorphic to $\mathbb{R}^n$.\\
+\verb!TH 2.20! & Let V and W be finite-dimensional vector spaces over $\mathbb{R}$ of dimensions n and m, respectively, and let $\beta$ and $\gamma$ be ordered bases for V and W, respectively. 
+			 Then the function $\phi :\mathscr{L}(V,W)\rightarrow M_{mxn}(\mathbb{R})$, defined by $\phi (T)=[T]_\beta^\gamma$ for $T\!\in\!\mathscr{L}(V,W)$, is an isomorphism.\\
+\verb!2.20 C! & Let V and W be finite-dimensional vector spaces of dimensions n and m, respectively. Then $\mathscr{L}(V,W)$ is finite-dimensional of dimension mn.\\
+\verb!def.! & Let $\beta$ be an ordered basis for an n-dimensional vector space V over $\mathbb{R}$. The standard representation of V with respect to $\beta$ is the function $\phi_\beta :V\rightarrow\mathbb{R}^n$ defined by $\phi_\beta (x) = [x]_\beta$ for each $x\!\in\! V$.\\
+\verb!TH 2.21! & For any finite-dimensional vector space V with ordered basis $\beta , \phi_\beta$ is an isomorphism.
+\end{tabular}
+
+
+
+%----------------------CHAPTER 2.5------------------------
+\section{CH 2.5 (Coordinate Matrix)}
+\settowidth{\MyLen}{\texttt{TH..2.15}}
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}} %{@{}ll@{}}
+\verb!TH 2.22! & Let $\beta\; and\;\beta '$ be two ordered bases for a finite-dimensional vector space V, and let $Q = [l_v]_{\beta '}^\beta $. Then
+			\begin{enumerate}[a)]
+			\item Q is invertible
+			\item For any $v\!\in\! V, [v]_\beta = Q[v]_{\beta '}$.
+			\end{enumerate}\\
+\verb!TH 2.23! & Let $T:V\rightarrow V$ be a linear transformation on the finite-dimensional vector space V, and let $\beta\; and\;\beta '$ be ordered bases for V. Let Q be the change of coordinate matrix which changes $\beta$'-coordinates into $\beta$-coordinates.
+			Then $[T]_{\beta '} = Q^{-1}[T]_\beta Q$.\\
+\verb!def.! & Let A and B be elements of $M_{n x n}(\mathbb{R})$. We say that B is similar to A if there exists an invertible matrix $Q\!\in\!M_{n x n}(\mathbb{R})$ such that $B = Q^{-1}AQ$.
+\end{tabular}
+
+
+
+
+\rule{0.3\linewidth}{0.25pt}
+\scriptsize
+
+RD Galang
+
+\end{multicols}
+\end{document}
